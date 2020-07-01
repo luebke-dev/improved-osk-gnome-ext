@@ -1,0 +1,6 @@
+.control-key-latched .control-key,
+.super-key-latched .super-key,
+.alt-key-latched .alt-key {
+      background-color: #55a54c;
+}
+
