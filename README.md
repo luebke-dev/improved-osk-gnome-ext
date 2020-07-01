@@ -2,7 +2,7 @@
 
 Makes Gnome's onscreen keyboard more useable with e.g. more keys
 
-This extension is based on https://extensions.gnome.org/extension/1631/improve-onscreen-keyboard/ but this version will make appear on the top layer of the gnome shell.
+This extension is based on https://extensions.gnome.org/extension/1631/improve-onscreen-keyboard/ but this version will make the keyboard appear on the top layer of the gnome shell.
 
 The most of the coding was done by schuhumi@extensions.gnome.org. Since there was no way of contacting him and i also didnt find any git repo for the extension i decided to publish it here.
 
