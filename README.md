@@ -22,4 +22,4 @@ reload gnome by pressing alt + F2 and enter r
 
 ### extensions.gnome.org
 
-Takes years to review...
+https://extensions.gnome.org/extension/3330/improved-onscreen-keyboard/
