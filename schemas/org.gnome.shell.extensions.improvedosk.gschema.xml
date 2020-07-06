@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.improvedosk" path="/org/gnome/shell/extensions/improvedosk/">
+    <!-- The key type "a{sb}" describes a dictionary of string-boolean pairs -->
+    <!-- See also: https://developer.gnome.org/glib/stable/gvariant-format-strings.html -->
+    <key name="landscape-height" type="i">
+      <default>33</default>
+    </key>
+    <key name="portrait-height" type="i">
+      <default>33</default>
+    </key>
+  </schema>
+</schemalist>

@@ -1,3 +1,5 @@
+'use strict';
+const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 const Main = imports.ui.main;
 const Keyboard = imports.ui.keyboard;
@@ -9,12 +11,15 @@ const Workspace = imports.ui.workspace;
 const Tweener = imports.ui.tweener;
 const Overview = imports.ui.overview;
 const Layout = imports.ui.layout;
+const ExtensionUtils = imports.misc.extensionUtils
 
 var defaultKeyboardDelay;
 var Backup_DefaultKeysForRow;
 var Backup_contructor;
 var Backup_keyvalPress;
 var Backup_keyvalRelease;
+var Backup_relayout;
+let settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.improvedosk')
 
 function init() {
   defaultKeyboardDelay = Layout.KEYBOARD_ANIMATION_TIME;
@@ -23,11 +28,27 @@ function init() {
   Backup_contructor = Keyboard.KeyboardController.prototype["constructor"];
   Backup_keyvalPress = Keyboard.KeyboardController.prototype["keyvalPress"];
   Backup_keyvalRelease = Keyboard.KeyboardController.prototype["keyvalRelease"];
+  Backup_relayout = Keyboard.Keyboard.prototype["_relayout"];
+}
+
+function _relayout() {
+  let monitor = Main.layoutManager.keyboardMonitor;
+
+  if (!monitor)
+    return;
+
+  this.width = monitor.width;
+
+  if (monitor.width > monitor.height) {
+    this.height = monitor.height * settings.get_int('landscape-height') / 100;
+  } else {
+    this.height = monitor.height * settings.get_int('portrait-height') / 100;
+  }
 }
 
 function enable() {
   Main.layoutManager.removeChrome(Main.layoutManager.keyboardBox);
-
+  log(settings);
   var KeyboardIsSetup = true;
   try {
     Main.keyboard._destroyKeyboard();
@@ -41,7 +62,7 @@ function enable() {
       throw e;
     }
   }
-
+  Keyboard.Keyboard.prototype["_relayout"] = _relayout;
   Keyboard.Keyboard.prototype["_getDefaultKeysForRow"] = function (
     row,
     numRows,
@@ -505,6 +526,7 @@ function disable() {
   Keyboard.KeyboardController.prototype["constructor"] = Backup_contructor;
   Keyboard.KeyboardController.prototype["keyvalPress"] = Backup_keyvalPress;
   Keyboard.KeyboardController.prototype["keyvalRelease"] = Backup_keyvalRelease;
+  Keyboard.Keyboard.prototype["_relayout"] = Backup_relayout;
   Layout.KEYBOARD_ANIMATION_TIME = defaultKeyboardDelay;
   if (KeyboardIsSetup) {
     Main.keyboard._setupKeyboard();
