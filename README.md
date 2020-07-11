@@ -23,3 +23,9 @@ reload gnome by pressing alt + F2 and enter r
 ### extensions.gnome.org
 
 https://extensions.gnome.org/extension/3330/improved-onscreen-keyboard/
+
+
+## FAQ
+
+### some symbols are missing
+the keyboard uses unicode characters, try install ttf-symbola on archlinux (AUR) or ttf-ancient-fonts-symbola on ubuntu/debian
