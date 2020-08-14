@@ -208,7 +208,6 @@ function enable() {
             extraClassName: "shift-key-lowercase",
           },
           { label: "?123", width: 1.5, level: 2 },
-          { level: 4, icon: "face-smile-symbolic" },
         ],
         [
           { label: "←", width: 1, keyval: Clutter.KEY_Left },
