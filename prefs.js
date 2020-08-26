@@ -70,7 +70,7 @@ function buildPrefsWidget() {
   });
 
   let labelResizeDesktop = new Gtk.Label({
-    label: "Resize Desktop (Shell restart required ):",
+    label: "Resize Desktop (Shell restart required):",
     halign: Gtk.Align.START,
     visible: true,
   });
@@ -109,6 +109,29 @@ function buildPrefsWidget() {
   });
   prefsWidget.attach(inputIgnoreTouchInput, 1, 3, 1, 1);
   prefsWidget.attach(labelIgnoreTouchInput, 0, 3, 1, 1);
+
+  let labelShowStatusbarIcon = new Gtk.Label({
+    label: "Show statusbar icon",
+    halign: Gtk.Align.START,
+    visible: true,
+  });
+
+  let inputShowStatusbarIcon = new Gtk.CheckButton({
+    label: "active",
+  });
+  inputShowStatusbarIcon.set_active(
+    settings.get_boolean("show-statusbar-icon")
+  );
+  inputShowStatusbarIcon.connect("toggled", (widget) => {
+    settings.set_boolean("show-statusbar-icon", widget.get_active());
+  });
+  settings.connect("changed::show-statusbar-icon", () => {
+    inputShowStatusbarIcon.set_active(
+      settings.get_boolean("show-statusbar-icon")
+    );
+  });
+  prefsWidget.attach(inputShowStatusbarIcon, 1, 4, 1, 1);
+  prefsWidget.attach(labelShowStatusbarIcon, 0, 4, 1, 1);
 
   prefsWidget.show_all();
   return prefsWidget;
