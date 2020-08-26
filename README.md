@@ -8,6 +8,7 @@ Features:
 * Configurable keyboard size (landscape/portrait)
 * Toggle auto keyboard popup on touch input 
 * Works in gnome password modals
+* Statusbar indicator to toggle keyboard
 
 This extension is a fork of [schuhumi/gnome-shell-extension-improve-osk](https://github.com/schuhumi/gnome-shell-extension-improve-osk). 
 
