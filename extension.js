@@ -62,6 +62,15 @@ function enable() {
       throw e;
     }
   }
+  Keyboard.KeyboardManager.prototype["_lastDeviceIsTouchscreen"] = function () {
+    if (!this._lastDevice) return false;
+
+    let deviceType = this._lastDevice.get_device_type();
+
+    return settings.get_boolean("ignore-touch-input")
+      ? false
+      : deviceType == Clutter.InputDeviceType.TOUCHSCREEN_DEVICE;
+  };
   Keyboard.Keyboard.prototype["_relayout"] = _relayout;
   Keyboard.Keyboard.prototype["_getDefaultKeysForRow"] = function (
     row,

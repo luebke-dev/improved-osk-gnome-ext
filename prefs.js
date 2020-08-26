@@ -88,6 +88,28 @@ function buildPrefsWidget() {
   prefsWidget.attach(inputResizeDesktop, 1, 2, 1, 1);
 
   prefsWidget.attach(labelResizeDesktop, 0, 2, 1, 1);
+
+  let labelIgnoreTouchInput = new Gtk.Label({
+    label: "Ignore touch-input",
+    halign: Gtk.Align.START,
+    visible: true,
+  });
+
+  let inputIgnoreTouchInput = new Gtk.CheckButton({
+    label: "active",
+  });
+  inputIgnoreTouchInput.set_active(settings.get_boolean("ignore-touch-input"));
+  inputIgnoreTouchInput.connect("toggled", (widget) => {
+    settings.set_boolean("ignore-touch-input", widget.get_active());
+  });
+  settings.connect("changed::ignore-touch-input", () => {
+    inputIgnoreTouchInput.set_active(
+      settings.get_boolean("ignore-touch-input")
+    );
+  });
+  prefsWidget.attach(inputIgnoreTouchInput, 1, 3, 1, 1);
+  prefsWidget.attach(labelIgnoreTouchInput, 0, 3, 1, 1);
+
   prefsWidget.show_all();
   return prefsWidget;
 }

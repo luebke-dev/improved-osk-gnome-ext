@@ -6,6 +6,9 @@
     <key name="resize-desktop" type="b">
       <default>true</default>
     </key>
+    <key name="ignore-touch-input" type="b">
+      <default>false</default>
+    </key>
     <key name="landscape-height" type="i">
       <default>33</default>
     </key>
