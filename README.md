@@ -1,10 +1,15 @@
 # improved-osk-gnome-ext
 
-Makes Gnome's onscreen keyboard more useable with e.g. more keys
+Makes Gnome's onscreen keyboard more useable.
 
-This extension is based on https://extensions.gnome.org/extension/1631/improve-onscreen-keyboard/ but this version will make the keyboard appear on the top layer of the gnome shell.
+Features:
+* More buttons like CTRL, F-Keys, Arrow Keys...
+* Resize desktop on popup
+* Configurable keyboard size (landscape/portrait)
+* Toggle auto keyboard popup on touch input 
+* Works in gnome password modals
 
-The most of the coding was done by schuhumi@extensions.gnome.org. Since there was no way of contacting him and i also didnt find any git repo for the extension i decided to publish it here.
+This extension is a fork of [schuhumi/gnome-shell-extension-improve-osk](https://github.com/schuhumi/gnome-shell-extension-improve-osk). 
 
 ![Screenshot](screenshots/1.png)
 
@@ -27,5 +32,11 @@ https://extensions.gnome.org/extension/3330/improved-onscreen-keyboard/
 
 ## FAQ
 
-### some symbols are missing
+### Some symbols are missing...
 the keyboard uses unicode characters, try install ttf-symbola on archlinux (AUR) or ttf-ancient-fonts-symbola on ubuntu/debian
+
+### Do i need to enable the OSK in Gnome accessibility settings?
+By default the keyboard will popup on touch input events. Enabling the keyboard in the accessibility settings just allows the OSK to popup on non touch input.
+
+## Support
+Feel free to submit a pull request or consider making a donation on [Flatter](https://flattr.com/@SebastianNoelLuebke).
