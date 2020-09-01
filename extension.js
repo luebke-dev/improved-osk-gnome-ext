@@ -497,7 +497,43 @@ function override_keyboardControllerConstructor() {
     this.emit("panel-state", state);
   });
 }
+/*
+To add a number row the KeyboardModel needs to be overriden but that will break the keyboard right now :(
 
+let KeyboardModel = class {
+  constructor(groupName) {
+    let names = [groupName];
+    if (groupName.includes("+")) names.push(groupName.replace(/\+.* /, ""));
+    names.push("us");
+
+    for (let i = 0; i < names.length; i++) {
+      try {
+        this._model = this._loadModel(names[i]);
+        log(this._model);
+        break;
+      } catch (e) {}
+    }
+  }
+
+  _loadModel(groupName) {
+    let file = Gio.File.new_for_uri(
+      "resource:///org/gnome/shell/osk-layouts/%s.json".format(groupName)
+    );
+    let [success_, contents] = file.load_contents(null);
+    contents = ByteArray.toString(contents);
+
+    return JSON.parse(contents);
+  }
+
+  getLevels() {
+    return this._model.levels;
+  }
+
+  getKeysForLevel(levelName) {
+    return this._model.levels.find((level) => level == levelName);
+  }
+};
+*/
 function enable_overrides() {
   Keyboard.KeyboardManager.prototype[
     "_lastDeviceIsTouchscreen"
@@ -532,7 +568,6 @@ function disable_overrides() {
 }
 
 // Extension
-
 function init() {
   backup_lastDeviceIsTouchScreen =
     Keyboard.KeyboardManager._lastDeviceIsTouchscreen;
@@ -579,7 +614,8 @@ function enable() {
       _indicator = null;
     }
   });
-
+  // Needed for the number row, currently not working
+  // Keyboard.KeyboardModel = KeyboardModel;
   if (KeyboardIsSetup) {
     Main.keyboard._setupKeyboard();
   }
