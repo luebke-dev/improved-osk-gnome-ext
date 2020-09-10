@@ -644,7 +644,7 @@ function disable() {
   }
 
   // Remove indicator if it exists
-  if (_indicator !== null) {
+  if (_indicator instanceof OSKIndicator) {
     _indicator.destroy();
     _indicator = null;
   }
