@@ -4,7 +4,8 @@
   "name": "Improved Onscreen Keyboard",
   "shell-version": [
     "3.36",
-    "3.38"
+    "3.38",
+    "40"
   ],
   "url": "https://github.com/SebastianLuebke/improved-osk-gnome-ext",
   "uuid": "improvedosk@luebke.io",
